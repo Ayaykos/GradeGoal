@@ -1,0 +1,157 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "grade goal",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "currentPercentageIntent",
+                    "slots": [
+                        {
+                            "name": "currentPercentage",
+                            "type": "grade_slot",
+                            "samples": [
+                                "{currentPercentage}",
+                                "My current grade is {currentPercentage}",
+                                "My grade is {currentPercentage}"
+                            ]
+                        },
+                        {
+                            "name": "goal",
+                            "type": "grade_slot",
+                            "samples": [
+                                "{goal}"
+                            ]
+                        },
+                        {
+                            "name": "weight",
+                            "type": "grade_slot",
+                            "samples": [
+                                "{weight}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "goal",
+                        "grade",
+                        "open",
+                        "i need {goal}",
+                        "i need a {goal}",
+                        "i want {goal}",
+                        "i want a {goal}",
+                        "i want to get a {goal}",
+                        "my grade is {currentPercentage}",
+                        "my current grade is {currentPercentage}",
+                        "my percentage"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "grade_slot",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "25",
+                                "synonyms": [
+                                    "twenty five %",
+                                    "twenty five percent",
+                                    "25 percent",
+                                    "25%",
+                                    "twenty five"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "currentPercentageIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "currentPercentage",
+                            "type": "grade_slot",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.506069749680.698475505712"
+                            }
+                        },
+                        {
+                            "name": "goal",
+                            "type": "grade_slot",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.506069749680.1330386656473"
+                            }
+                        },
+                        {
+                            "name": "weight",
+                            "type": "grade_slot",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.506069749680.64921206629"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.506069749680.698475505712",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What's your current grade?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.506069749680.1330386656473",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What's the grade you want in the class?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.506069749680.64921206629",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How much is your final exam worth?"
+                    }
+                ]
+            }
+        ]
+    }
+}
