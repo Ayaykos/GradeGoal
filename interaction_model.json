@@ -51,6 +51,8 @@
                         }
                     ],
                     "samples": [
+                        "calculate my grade",
+                        "it weighs {weight}",
                         "goal",
                         "grade",
                         "open",
@@ -71,14 +73,32 @@
                     "values": [
                         {
                             "name": {
-                                "value": "25",
-                                "synonyms": [
-                                    "twenty five %",
-                                    "twenty five percent",
-                                    "25 percent",
-                                    "25%",
-                                    "twenty five"
-                                ]
+                                "value": "thirty point one"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "thirty point one percent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "twenty two percent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "twenty five percent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "25 percent"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "25"
                             }
                         }
                     ]
