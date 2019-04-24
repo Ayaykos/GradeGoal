@@ -94,18 +94,43 @@ def text2int(textnum, numwords={}):
 
     return result + current
 
-print (text2int("one hundred"))
-
+def text(text):
+    found = False
+    part1 = ""
+    part2 = ""
+    if ("point") in text:
+        for word in text.split():
+            if(found == False):
+                part1 += word
+                part1 += " "
+            else:
+                part2 += word
+                part2 += " "
+            if(word == "point"):
+                found = True
+    else:
+        part1 = text
+    if("point") in part1:
+        part1 = part1.replace(' point ','')
+        newnum = str(text2int(part1)) + "." + str(text2int(part2))
+    else:
+        newnum = text2int(str(part1) + str(part2))         
+    return newnum
+    
 def normalize(number):
     temp = str(number)
     
+    if ('%' in temp):
+        temp = str(temp)
+        temp = temp[:-1]
     if ('percent' in temp):
-        number = str(number)
-        number = temp[:-7]
-        if(' point ' in number):
-            number = number.replace(' point ','.')
-    
-    return float(number)
+        temp = str(temp)
+        temp = temp[:-7]
+    if (temp[0].isalpha()):
+        temp = text(temp)
+
+    return float(temp)
+
 
 
 
@@ -116,9 +141,7 @@ class currentPercentageIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return (is_request_type("LaunchRequest")(handler_input) or 
         is_intent_name("currentPercentageIntent")(handler_input))
-
         
-
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         logger.info("In GetNewFactHandler")
@@ -133,7 +156,6 @@ class currentPercentageIntentHandler(AbstractRequestHandler):
         weight = (normalize(slots.get("weight").value))*0.01
 
         result =  float( (goal) - (1-weight)*currentPercentage) / weight
-        
         
         speech = str( round(   (result*100),2    ) )
         speech = "You need a " + speech + "% on your exam to achieve your grade goal. " + responseSentiment(result*100)
